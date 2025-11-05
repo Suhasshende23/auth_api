@@ -9,6 +9,7 @@ from drf_spectacular.views import SpectacularAPIView
 from drf_spectacular.views import SpectacularSwaggerView
 from rest_framework.authtoken.views import obtain_auth_token
 from django.contrib.auth import views as auth_views
+
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path(
@@ -21,8 +22,8 @@ urlpatterns = [
     # User management
     path("users/", include("apiauth.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
-
-        path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    path("dj-rest-auth/", include("apiauth.authapp.urls")),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
 
 

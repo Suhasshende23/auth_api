@@ -85,16 +85,22 @@ THIRD_PARTY_APPS = [
 
     "dj_rest_auth",
     "dj_rest_auth.registration", 
-    "requests" # for signup endpoint
+    "requests", # for signup endpoint
+
+    "django_otp",
+    "django_otp.plugins.otp_email",
 
 ]
 SITE_ID = 1
 LOCAL_APPS = [
     "apiauth.users",
+    "apiauth.authapp"
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+
 
 # MIGRATIONS
 # ------------------------------------------------------------------------------
@@ -140,6 +146,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "django_otp.middleware.OTPMiddleware", 
     "corsheaders.middleware.CorsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -310,7 +317,7 @@ SPECTACULAR_SETTINGS = {
     "TITLE": "auth_api API",
     "DESCRIPTION": "Documentation of API endpoints of auth_api",
     "VERSION": "1.0.0",
-    "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
+    "SERVE_PERMISSIONS": ["rest_framework.permissions.AllowAny"],
     "SCHEMA_PATH_PREFIX": "/api/",
 }
 # Your stuff...
