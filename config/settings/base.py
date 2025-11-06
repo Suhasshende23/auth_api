@@ -89,6 +89,7 @@ THIRD_PARTY_APPS = [
 
     "django_otp",
     "django_otp.plugins.otp_email",
+    "django_otp.plugins.otp_totp",
 
 ]
 SITE_ID = 1
